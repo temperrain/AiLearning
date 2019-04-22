@@ -7,6 +7,7 @@ Logistic Regression Working Module
 Author: Peter Harrington/羊三/小瑶
 GitHub: https://github.com/apachecn/AiLearning
 '''
+from __future__ import print_function
 from numpy import *
 import matplotlib.pyplot as plt
 
@@ -205,7 +206,7 @@ def plotBestFit(dataArr, labelMat, weights):
 
 def simpleTest():
     # 1.收集并准备数据
-    dataMat, labelMat = loadDataSet("input/5.Logistic/TestSet.txt")
+    dataMat, labelMat = loadDataSet("data/5.Logistic/TestSet.txt")
 
     # print dataMat, '---\n', labelMat
     # 2.训练模型，  f(x)=a1*x1+b2*x2+..+nn*xn中 (a1,b2, .., nn).T的矩阵值
@@ -250,8 +251,8 @@ def colicTest():
     Returns:
         errorRate -- 分类错误率
     '''
-    frTrain = open('input/5.Logistic/horseColicTraining.txt')
-    frTest = open('input/5.Logistic/horseColicTest.txt')
+    frTrain = open('data/5.Logistic/horseColicTraining.txt')
+    frTest = open('data/5.Logistic/horseColicTest.txt')
     trainingSet = []
     trainingLabels = []
     # 解析训练数据集中的数据特征和Labels
@@ -279,7 +280,7 @@ def colicTest():
                 currLine[21]):
             errorCount += 1
     errorRate = (float(errorCount) / numTestVec)
-    print "the error rate of this test is: %f" % errorRate
+    print("the error rate of this test is: %f" % errorRate)
     return errorRate
 
 
@@ -289,7 +290,7 @@ def multiTest():
     errorSum = 0.0
     for k in range(numTests):
         errorSum += colicTest()
-    print "after %d iterations the average error rate is: %f" % (numTests, errorSum / float(numTests))
+    print("after %d iterations the average error rate is: %f" % (numTests, errorSum / float(numTests)))
 
 
 if __name__ == "__main__":

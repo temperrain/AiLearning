@@ -5,8 +5,8 @@
 Created on Oct 27, 2010
 Update  on 2017-05-18
 Logistic Regression Working Module
-@author: 小瑶
-《机器学习实战》更新地址：https://github.com/apachecn/AiLearning
+Author: 小瑶
+GitHub: https://github.com/apachecn/AiLearning
 scikit-learn的例子地址：http://scikit-learn.org/stable/modules/linear_model.html#logistic-regression
 '''
 
@@ -179,6 +179,7 @@ for multi_class in ('multinomial', 'ovr'):
 
 plt.show()
 '''
+from __future__ import print_function
 
 # Logistic Regression 3-class Classifier 逻辑回归 3-类 分类器 
 

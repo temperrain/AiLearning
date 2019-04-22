@@ -7,6 +7,7 @@ Tree-Based Regression Methods Source Code for Machine Learning in Action Ch. 9
 Author: Peter Harrington/片刻/小瑶/zh0ng
 GitHub: https://github.com/apachecn/AiLearning
 '''
+from __future__ import print_function
 print(__doc__)
 from numpy import *
 
@@ -242,7 +243,7 @@ def prune(tree, testData):
         errorMerge = sum(power(testData[:, -1] - treeMean, 2))
         # 如果 合并的总方差 < 不合并的总方差，那么就进行合并
         if errorMerge < errorNoMerge:
-            print "merging"
+            print("merging")
             return treeMean
         # 两个return可以简化成一个
         else:
@@ -404,14 +405,14 @@ def createForeCast(tree, testData, modelEval=regTreeEval):
 if __name__ == "__main__":
     # 测试数据集
     testMat = mat(eye(4))
-    print testMat
-    print type(testMat)
+    print(testMat)
+    print(type(testMat))
     mat0, mat1 = binSplitDataSet(testMat, 1, 0.5)
-    print mat0, '\n-----------\n', mat1
+    print(mat0, '\n-----------\n', mat1)
 
     # # 回归树
-    # myDat = loadDataSet('input/9.RegTrees/data1.txt')
-    # # myDat = loadDataSet('input/9.RegTrees/data2.txt')
+    # myDat = loadDataSet('data/9.RegTrees/data1.txt')
+    # # myDat = loadDataSet('data/9.RegTrees/data2.txt')
     # # print 'myDat=', myDat
     # myMat = mat(myDat)
     # # print 'myMat=',  myMat
@@ -419,13 +420,13 @@ if __name__ == "__main__":
     # print myTree
 
     # # 1. 预剪枝就是：提起设置最大误差数和最少元素数
-    # myDat = loadDataSet('input/9.RegTrees/data3.txt')
+    # myDat = loadDataSet('data/9.RegTrees/data3.txt')
     # myMat = mat(myDat)
     # myTree = createTree(myMat, ops=(0, 1))
     # print myTree
 
     # # 2. 后剪枝就是：通过测试数据，对预测模型进行合并判断
-    # myDatTest = loadDataSet('input/9.RegTrees/data3test.txt')
+    # myDatTest = loadDataSet('data/9.RegTrees/data3test.txt')
     # myMat2Test = mat(myDatTest)
     # myFinalTree = prune(myTree, myMat2Test)
     # print '\n\n\n-------------------'
@@ -433,14 +434,14 @@ if __name__ == "__main__":
 
     # # --------
     # # 模型树求解
-    # myDat = loadDataSet('input/9.RegTrees/data4.txt')
+    # myDat = loadDataSet('data/9.RegTrees/data4.txt')
     # myMat = mat(myDat)
     # myTree = createTree(myMat, modelLeaf, modelErr)
     # print myTree
 
     # # # 回归树 VS 模型树 VS 线性回归
-    # trainMat = mat(loadDataSet('input/9.RegTrees/bikeSpeedVsIq_train.txt'))
-    # testMat = mat(loadDataSet('input/9.RegTrees/bikeSpeedVsIq_test.txt'))
+    # trainMat = mat(loadDataSet('data/9.RegTrees/bikeSpeedVsIq_train.txt'))
+    # testMat = mat(loadDataSet('data/9.RegTrees/bikeSpeedVsIq_test.txt'))
     # # # 回归树
     # myTree1 = createTree(trainMat, ops=(1, 20))
     # print myTree1

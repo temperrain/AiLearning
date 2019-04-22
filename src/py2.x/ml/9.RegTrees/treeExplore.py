@@ -8,6 +8,7 @@ Tree-Based Regression Methods Source Code for Machine Learning in Action Ch. 9
 Author: Peter/片刻
 GitHub: https://github.com/apachecn/AiLearning
 '''
+from __future__ import print_function
 import regTrees
 from Tkinter import *
 from numpy import *
@@ -52,14 +53,14 @@ def getInputs():
         tolN = int(tolNentry.get())
     except:
         tolN = 10
-        print "enter Integer for tolN"
+        print("enter Integer for tolN")
         tolNentry.delete(0, END)
         tolNentry.insert(0, '10')
     try:
         tolS = float(tolSentry.get())
     except:
         tolS = 1.0
-        print "enter Float for tolS"
+        print("enter Float for tolS")
         tolSentry.delete(0, END)
         tolSentry.insert(0, '1.0')
     return tolN, tolS
@@ -107,7 +108,7 @@ def main(root):
     reDraw.canvas.show()
     reDraw.canvas.get_tk_widget().grid(row=0, columnspan=3)
 
-    reDraw.rawDat = mat(regTrees.loadDataSet('input/9.RegTrees/sine.txt'))
+    reDraw.rawDat = mat(regTrees.loadDataSet('data/9.RegTrees/sine.txt'))
     reDraw.testDat = arange(min(reDraw.rawDat[:, 0]), max(reDraw.rawDat[:, 0]), 0.01)
     reDraw(1.0, 10)
 

@@ -6,6 +6,7 @@ Update  on 2017-05-18
 Author: Peter Harrington/小瑶
 GitHub: https://github.com/apachecn/AiLearning
 '''
+from __future__ import print_function
 
 from numpy import *
 import matplotlib.pylab as plt
@@ -425,12 +426,12 @@ def scrapePage(retX, retY, inFile, yr, numPce, origPrc):
 
 # 依次读取六种乐高套装的数据，并生成数据矩阵        
 def setDataCollect(retX, retY):
-    scrapePage(retX, retY, 'input/8.Regression/setHtml/lego8288.html', 2006, 800, 49.99)
-    scrapePage(retX, retY, 'input/8.Regression/setHtml/lego10030.html', 2002, 3096, 269.99)
-    scrapePage(retX, retY, 'input/8.Regression/setHtml/lego10179.html', 2007, 5195, 499.99)
-    scrapePage(retX, retY, 'input/8.Regression/setHtml/lego10181.html', 2007, 3428, 199.99)
-    scrapePage(retX, retY, 'input/8.Regression/setHtml/lego10189.html', 2008, 5922, 299.99)
-    scrapePage(retX, retY, 'input/8.Regression/setHtml/lego10196.html', 2009, 3263, 249.99)
+    scrapePage(retX, retY, 'data/8.Regression/setHtml/lego8288.html', 2006, 800, 49.99)
+    scrapePage(retX, retY, 'data/8.Regression/setHtml/lego10030.html', 2002, 3096, 269.99)
+    scrapePage(retX, retY, 'data/8.Regression/setHtml/lego10179.html', 2007, 5195, 499.99)
+    scrapePage(retX, retY, 'data/8.Regression/setHtml/lego10181.html', 2007, 3428, 199.99)
+    scrapePage(retX, retY, 'data/8.Regression/setHtml/lego10189.html', 2008, 5922, 299.99)
+    scrapePage(retX, retY, 'data/8.Regression/setHtml/lego10196.html', 2009, 3263, 249.99)
 
 
 # 交叉验证测试岭回归
@@ -494,7 +495,7 @@ def crossValidation(xArr,yArr,numVal=10):
 
 # test for standRegression
 def regression1():
-    xArr, yArr = loadDataSet("input/8.Regression/data.txt")
+    xArr, yArr = loadDataSet("data/8.Regression/data.txt")
     xMat = mat(xArr)
     yMat = mat(yArr)
     ws = standRegres(xArr, yArr)
@@ -513,7 +514,7 @@ def regression1():
 
 # test for LWLR
 def regression2():
-    xArr, yArr = loadDataSet("input/8.Regression/data.txt")
+    xArr, yArr = loadDataSet("data/8.Regression/data.txt")
     yHat = lwlrTest(xArr, xArr, yArr, 0.003)
     xMat = mat(xArr)
     srtInd = xMat[:, 1].argsort(
@@ -540,33 +541,33 @@ def abaloneTest():
         None
     '''
     # 加载数据
-    abX, abY = loadDataSet("input/8.Regression/abalone.txt")
+    abX, abY = loadDataSet("data/8.Regression/abalone.txt")
     # 使用不同的核进行预测
     oldyHat01 = lwlrTest(abX[0:99], abX[0:99], abY[0:99], 0.1)
     oldyHat1 = lwlrTest(abX[0:99], abX[0:99], abY[0:99], 1)
     oldyHat10 = lwlrTest(abX[0:99], abX[0:99], abY[0:99], 10)
     # 打印出不同的核预测值与训练数据集上的真实值之间的误差大小
-    print("old yHat01 error Size is :", rssError(abY[0:99], oldyHat01.T))
-    print("old yHat1 error Size is :", rssError(abY[0:99], oldyHat1.T))
-    print("old yHat10 error Size is :", rssError(abY[0:99], oldyHat10.T))
+    print(("old yHat01 error Size is :", rssError(abY[0:99], oldyHat01.T)))
+    print(("old yHat1 error Size is :", rssError(abY[0:99], oldyHat1.T)))
+    print(("old yHat10 error Size is :", rssError(abY[0:99], oldyHat10.T)))
 
     # 打印出 不同的核预测值 与 新数据集（测试数据集）上的真实值之间的误差大小
     newyHat01 = lwlrTest(abX[100:199], abX[0:99], abY[0:99], 0.1)
-    print("new yHat01 error Size is :", rssError(abY[0:99], newyHat01.T))
+    print(("new yHat01 error Size is :", rssError(abY[0:99], newyHat01.T)))
     newyHat1 = lwlrTest(abX[100:199], abX[0:99], abY[0:99], 1)
-    print("new yHat1 error Size is :", rssError(abY[0:99], newyHat1.T))
+    print(("new yHat1 error Size is :", rssError(abY[0:99], newyHat1.T)))
     newyHat10 = lwlrTest(abX[100:199], abX[0:99], abY[0:99], 10)
-    print("new yHat10 error Size is :", rssError(abY[0:99], newyHat10.T))
+    print(("new yHat10 error Size is :", rssError(abY[0:99], newyHat10.T)))
 
     # 使用简单的 线性回归 进行预测，与上面的计算进行比较
     standWs = standRegres(abX[0:99], abY[0:99])
     standyHat = mat(abX[100:199]) * standWs
-    print("standRegress error Size is:", rssError(abY[100:199], standyHat.T.A))
+    print(("standRegress error Size is:", rssError(abY[100:199], standyHat.T.A)))
 
 
 # test for ridgeRegression
 def regression3():
-    abX, abY = loadDataSet("input/8.Regression/abalone.txt")
+    abX, abY = loadDataSet("data/8.Regression/abalone.txt")
     ridgeWeights = ridgeTest(abX, abY)
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -576,7 +577,7 @@ def regression3():
 
 # test for stageWise
 def regression4():
-    xArr, yArr = loadDataSet("input/8.Regression/abalone.txt")
+    xArr, yArr = loadDataSet("data/8.Regression/abalone.txt")
     stageWise(xArr, yArr, 0.01, 200)
     xMat = mat(xArr)
     yMat = mat(yArr).T

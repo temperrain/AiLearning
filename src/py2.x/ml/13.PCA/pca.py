@@ -7,6 +7,7 @@ Update  on 2017-05-18
 Author: Peter Harrington/片刻
 GitHub：https://github.com/apachecn/AiLearning
 '''
+from __future__ import print_function
 from numpy import *
 import matplotlib.pyplot as plt
 print(__doc__)
@@ -87,7 +88,7 @@ def pca(dataMat, topNfeat=9999999):
 
 
 def replaceNanWithMean():
-    datMat = loadDataSet('input/13.PCA/secom.data', ' ')
+    datMat = loadDataSet('data/13.PCA/secom.data', ' ')
     numFeat = shape(datMat)[1]
     for i in range(numFeat):
         # 对value不为NaN的求均值
@@ -129,12 +130,12 @@ def analyse_data(dataMat):
 
         最后，我们可能会注意到有一些小的负值，他们主要源自数值误差应该四舍五入成0.
         '''
-        print '主成分：%s, 方差占比：%s%%, 累积方差占比：%s%%' % (format(i+1, '2.0f'), format(line_cov_score/cov_all_score*100, '4.2f'), format(sum_cov_score/cov_all_score*100, '4.1f'))
+        print('主成分：%s, 方差占比：%s%%, 累积方差占比：%s%%' % (format(i+1, '2.0f'), format(line_cov_score/cov_all_score*100, '4.2f'), format(sum_cov_score/cov_all_score*100, '4.1f')))
 
 
 if __name__ == "__main__":
     # # 加载数据，并转化数据类型为float
-    # dataMat = loadDataSet('input/13.PCA/testSet.txt')
+    # dataMat = loadDataSet('data/13.PCA/testSet.txt')
     # # 只需要1个特征向量
     # lowDmat, reconMat = pca(dataMat, 1)
     # # 只需要2个特征向量，和原始数据一致，没任何变化
@@ -144,7 +145,7 @@ if __name__ == "__main__":
 
     # 利用PCA对半导体制造数据降维
     dataMat = replaceNanWithMean()
-    print shape(dataMat)
+    print(shape(dataMat))
     # 分析数据
     analyse_data(dataMat)
     # lowDmat, reconMat = pca(dataMat, 20)
